@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+
+  <body ng-app="myApp">
+    <first-directive></first-directive>
+    <div first-directive></div>
+    <div class="first-directive"></div>
+    <!-- directive: first-directive -->
+
+    <script>
+      var app = angular.module("myApp", []);
+      app.directive("firstDirective", function() {
+	      return {
+          restrict: "EACM",
+          replace : true,
+          /*
+          This to make it available for classes and only classes
+          restrict: "C",
+
+          This to make it available for comments and only comments
+          restrict : "M",
+          replace : true,
+          */
+	        template : "<h1>Directive playground</h1>"
+	      }
+	    });
+    </script>
+  </body>
+</html>

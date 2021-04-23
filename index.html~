@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+  <body>
+
+    <div ng-app="myApp" ng-controller="myCtrl" ng-init="color='lightblue'; quantity=3; cost=5; person={firstName:'John',lastName:'Doe'}">
+        <p>Last name: <input type="text" ng-model="lastName"></p>
+        <p ng-bind="firstName"></p>
+        <p ng-bind="lastName"></p>
+
+        <!-- what does ng-model do -->
+        <p style="background-color: {{color}};" ng-model="color">{{10 + 10}} : {{firstName + " " + lastName}} </p>
+
+        <p>It costs ${{ quantity * cost }}</p>
+
+        <p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+
+        <p>The name is <span ng-bind="firstName + ' ' + lastName"></span></p>
+    </div>
+
+    <div ng-app="" ng-init="name='John'">
+      <p ng-bind="name"></p>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+          $scope.firstName= "John";
+          $scope.lastName= "Doe";
+        });
+    </script>
+  </body>
+</html>

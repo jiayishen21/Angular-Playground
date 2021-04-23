@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+
+  <body>
+
+    <!--
+    <div ng-app="firstApp" ng-controller="myCtrl" test-directive>
+      <p>The result is {{ points[2] + points[3] }}</p>
+    </div>
+    -->
+
+    <div ng-app="firstApp" ng-controller="myCtrl">
+      <p>The result is {{ points[2] + points[3] }}</p>
+      <ul>
+	<li ng-repeat="x in points">
+	  {{ x }}
+	</li>
+      </ul>
+
+      <br>
+
+      <ul>
+	<p ng-repeat="x in people">
+	  {{ x }}
+	</p>
+      <ul>
+
+      
+    </div>
+
+    <script>
+      var app = angular.module("firstApp", []);
+
+      app.controller("myCtrl", function($scope) {
+	$scope.points=[1, 15, 19, 2, 40];
+	/*
+	$scope.people=[
+	{name:"Jagmeet", country:"India"},
+	{name:"Bill,; country:"United Kingdom"},
+	{name:"Louis", country:"France"}
+	];
+	*/
+      });
+
+      app.directive("testDirective", function() {
+	return {
+	  template: "made in directive constrcutor"
+	};
+      });
+    </script>
+
+    </body>
+</html>
