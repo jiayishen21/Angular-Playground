@@ -2,16 +2,59 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <style>
+      input.ng-invalid {
+        background-color: #ff9966;
+      }
+
+      input.ng-valid {
+        background-color: #00ff99;
+      }
+    </style>
   </head>
 
-  <body ng-app="myApp">
+  <body ng-app="myApp" ng-controller="firstCtrl">
     <first-directive></first-directive>
     <div first-directive></div>
     <div class="first-directive"></div>
     <!-- directive: first-directive -->
 
+    <div>Name: <input ng-model="name"></div>
+    <div>You entered: {{name}}</div>
+
+    <form name="myForm">
+      Email:
+      <input type="email" name="myAddress" ng-model="text1"><br>
+      <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+    </form><br>
+
+    <form name="form2">
+      Email:
+      <input type="email" name="adress2" ng-model="text2" required>
+      <p>Status</p>
+      <!--
+      Validity is if it's a valid Email
+      Dirty is if you've changed the text
+      Touched is if you've touched the textfield (you don't have to type anything)
+      -->
+      Validity: {{form2.adress2.$valid}}
+      Dirty: {{form2.adress2.$dirty}}
+      Touched: {{form2.adress2.$touched}}
+    </form>
+
+    <p ng-bind="name2" ng-click="changeName()"></p>
+
     <script>
       var app = angular.module("myApp", []);
+      app.controller("firstCtrl", function($scope) {
+        $scope.name="Lucas";
+        $scope.text2="Input here";
+        $scope.name2="Bill";
+        $scope.changeName = function() {
+          $scope.name2="Hunter";
+        }
+      });
       app.directive("firstDirective", function() {
 	      return {
           restrict: "EACM",
